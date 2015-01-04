@@ -48,7 +48,7 @@ def wakeSequence(wakeSeconds,seconds):
 #Run the script
 piglow = PiGlow()
 
-hours = 7
+hours = 19
 minutes = 0
 
 #Takes 15 minutes to fully wake up
