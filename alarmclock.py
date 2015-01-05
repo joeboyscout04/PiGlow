@@ -3,7 +3,7 @@ __author__ = 'josephelliott'
 import time
 import datetime
 from piglow import PiGlow
-import pytz
+from pytz import timezone
 
 
 def wakeSequence(wakeSeconds, seconds):
