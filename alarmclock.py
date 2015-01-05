@@ -27,15 +27,18 @@ def wakeSequence(wakeSeconds, seconds):
 
     if seconds >= orangeStart:
         orangeBrightness = int(orangeRamp*(seconds - (wakeSeconds - orangeRampDuration)))
+        print("Orange brightness at %i" % orangeBrightness)
         piglow.orange(orangeBrightness)
 
     if seconds >= yellowStart:
 
         yellowBrightness = int(yellowRamp*(seconds - (wakeSeconds - yellowRampDuration)))
+        print("Yellow brightness at %i" % yellowBrightness)
         piglow.yellow(yellowBrightness)
 
     if seconds >= whiteStart:
         whiteBrightness = int(whiteRamp*(seconds - (wakeSeconds - whiteRampDuration)))
+        print("White brightness at %i" % whiteBrightness)
         piglow.white(whiteBrightness)
 
 
