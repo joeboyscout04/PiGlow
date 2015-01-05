@@ -8,7 +8,7 @@ from piglow import PiGlow
 def wakeSequence(wakeSeconds,seconds):
 
     #begin the wake sequence
-
+    print("Wake sequence at %i seconds" % seconds)
     #start with just the orange LEDs
     orangeStart = 0
     orangeRampDuration = wakeSeconds
@@ -48,8 +48,8 @@ def wakeSequence(wakeSeconds,seconds):
 #Run the script
 piglow = PiGlow()
 
-hours = 19
-minutes = 0
+hours = 0
+minutes = 20
 
 #Takes 15 minutes to fully wake up
 wakeDuration = datetime.timedelta(minutes=15)
@@ -73,6 +73,7 @@ try:
 
         else:
             #shut off after 10 min at full power
+            print("Sleeping...zzzzz")
             piglow.all(0)
 
         # sleep for a bit, don't go too fast!
