@@ -23,24 +23,19 @@ def wakeSequence(wakeSeconds, seconds):
     whiteRampDuration = wakeTime.second - whiteStart
     whiteRamp = 255.0/whiteRampDuration
 
-    #end with all LEDs at 100.
 
-    orangeBrightness = 0
-    yellowBrightness = 0
-    whiteBrightness = 0
-
-    if orangeBrightness < 100 and seconds > orangeStart:
+    if seconds >= orangeStart:
         orangeBrightness = int(orangeRamp*seconds)
+        piglow.orange(orangeBrightness)
 
-    if yellowBrightness < 100 and seconds > yellowStart:
-        yellowBrightness = int(yellowRamp*seconds)
+    if seconds >= yellowStart:
 
-    if whiteBrightness < 100 and seconds > whiteStart:
-        whiteBrightness = int(whiteRamp*seconds)
+        yellowBrightness = int(yellowRamp*(seconds - (wakeSeconds - yellowRampDuration)))
+        piglow.yellow(yellowBrightness)
 
-    piglow.orange(orangeBrightness)
-    piglow.yellow(yellowBrightness)
-    piglow.white(whiteBrightness)
+    if seconds >= whiteStart:
+        whiteBrightness = int(whiteRamp*(seconds - (wakeSeconds - whiteRampDuration)))
+        piglow.white(whiteBrightness)
 
 
 
@@ -66,7 +61,7 @@ try:
 
         shutoffTime = wakeTime + totalDuration
 
-        if currentTime > wakeTime and currentTime < shutoffTime:
+        if wakeTime < currentTime < shutoffTime:
             seconds = currentTime - wakeTime
             print("Wake sequence at %i seconds" % seconds.seconds)
             wakeSequence(wakeDuration.seconds, seconds.seconds)
