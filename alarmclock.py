@@ -16,12 +16,12 @@ def wakeSequence(wakeSeconds,seconds):
 
     #The then yellow at 10 min
     yellowStart = (wakeSeconds*(1/3))
-    yellowRampDuration = wakeTime - yellowStart
+    yellowRampDuration = wakeTime.second - yellowStart
     yellowRamp = yellowRampDuration/100
 
     #then the white at 5 min
     whiteStart = (wakeSeconds*(2/3))
-    whiteRampDuration = wakeTime - whiteStart
+    whiteRampDuration = wakeTime.second - whiteStart
     whiteRamp = whiteRampDuration/100
 
     #end with all LEDs at 100.
@@ -49,7 +49,7 @@ def wakeSequence(wakeSeconds,seconds):
 piglow = PiGlow()
 
 hours = 0
-minutes = 20
+minutes = 23
 
 #Takes 15 minutes to fully wake up
 wakeDuration = datetime.timedelta(minutes=15)
