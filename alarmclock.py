@@ -47,7 +47,7 @@ def wakeSequence(wakeSeconds, seconds):
 piglow = PiGlow()
 
 hours = 21
-minutes = 15
+minutes = 28
 timezone = timezone('US/Eastern')
 
 #Takes 15 minutes to fully wake up
