@@ -3,6 +3,7 @@ __author__ = 'josephelliott'
 import time
 import datetime
 from piglow import PiGlow
+import pytz
 
 
 def wakeSequence(wakeSeconds, seconds):
@@ -42,8 +43,9 @@ def wakeSequence(wakeSeconds, seconds):
 #Run the script
 piglow = PiGlow()
 
-hours = 1
+hours = 21
 minutes = 15
+timezone = timezone('US/Eastern')
 
 #Takes 15 minutes to fully wake up
 wakeDuration = datetime.timedelta(minutes=15)
@@ -55,13 +57,13 @@ totalDuration = wakeDuration + datetime.timedelta(minutes=10)
 try:
     while True:
         #set the wake time then enter the loop
-        currentTime = datetime.datetime.now()
+        currentTime = datetime.datetime.now(timezone)
 
         wakeTime = currentTime.replace(hour=hours, minute=minutes, second=0)
 
-        shutoffTime = wakeTime + totalDuration
+        shutOffTime = wakeTime + totalDuration
 
-        if wakeTime < currentTime < shutoffTime:
+        if wakeTime < currentTime < shutOffTime:
             seconds = currentTime - wakeTime
             print("Wake sequence at %i seconds" % seconds.seconds)
             wakeSequence(wakeDuration.seconds, seconds.seconds)
