@@ -5,22 +5,21 @@ import datetime
 from piglow import PiGlow
 
 
-def wakeSequence(wakeSeconds,seconds):
+def wakeSequence(wakeSeconds, seconds):
 
     #begin the wake sequence
-    print("Wake sequence at %i seconds" % seconds)
     #start with just the orange LEDs
     orangeStart = 0
     orangeRampDuration = wakeSeconds
     orangeRamp = orangeRampDuration/100 #power per second
 
     #The then yellow at 10 min
-    yellowStart = (wakeSeconds*(1/3))
+    yellowStart = (wakeSeconds*(1/3.0))
     yellowRampDuration = wakeTime.second - yellowStart
     yellowRamp = yellowRampDuration/100
 
     #then the white at 5 min
-    whiteStart = (wakeSeconds*(2/3))
+    whiteStart = (wakeSeconds*(2/3.0))
     whiteRampDuration = wakeTime.second - whiteStart
     whiteRamp = whiteRampDuration/100
 
@@ -63,12 +62,13 @@ try:
         #set the wake time then enter the loop
         currentTime = datetime.datetime.now()
 
-        wakeTime = currentTime.replace(hour=hours, minute=minutes)
+        wakeTime = currentTime.replace(hour=hours, minute=minutes, second=0)
 
         shutoffTime = wakeTime + totalDuration
 
         if currentTime > wakeTime and currentTime < shutoffTime:
             seconds = currentTime - wakeTime
+            print("Wake sequence at %i seconds" % seconds.seconds)
             wakeSequence(wakeDuration.seconds, seconds.seconds)
 
         else:
