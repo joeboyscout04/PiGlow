@@ -25,7 +25,7 @@ def wakeSequence(wakeSeconds, seconds):
 
 
     if seconds >= orangeStart:
-        orangeBrightness = int(orangeRamp*seconds)
+        orangeBrightness = int(orangeRamp*(seconds - (wakeSeconds - orangeRampDuration)))
         piglow.orange(orangeBrightness)
 
     if seconds >= yellowStart:
@@ -43,7 +43,7 @@ def wakeSequence(wakeSeconds, seconds):
 piglow = PiGlow()
 
 hours = 1
-minutes = 10
+minutes = 15
 
 #Takes 15 minutes to fully wake up
 wakeDuration = datetime.timedelta(minutes=15)
