@@ -16,12 +16,12 @@ def wakeSequence(wakeSeconds, seconds):
 
     #The then yellow at 10 min
     yellowStart = (wakeSeconds*(1/3.0))
-    yellowRampDuration = wakeTime.second - yellowStart
+    yellowRampDuration = wakeSeconds - yellowStart
     yellowRamp = 255.0/yellowRampDuration
 
     #then the white at 5 min
     whiteStart = (wakeSeconds*(2/3.0))
-    whiteRampDuration = wakeTime.second - whiteStart
+    whiteRampDuration = wakeSeconds - whiteStart
     whiteRamp = 255.0/whiteRampDuration
 
 
