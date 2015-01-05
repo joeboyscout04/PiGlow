@@ -42,8 +42,8 @@ def wakeSequence(wakeSeconds, seconds):
 #Run the script
 piglow = PiGlow()
 
-hours = 0
-minutes = 48
+hours = 1
+minutes = 10
 
 #Takes 15 minutes to fully wake up
 wakeDuration = datetime.timedelta(minutes=15)
