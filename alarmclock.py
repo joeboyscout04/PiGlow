@@ -11,17 +11,17 @@ def wakeSequence(wakeSeconds, seconds):
     #start with just the orange LEDs
     orangeStart = 0
     orangeRampDuration = wakeSeconds
-    orangeRamp = orangeRampDuration/100 #power per second
+    orangeRamp = 255.0/orangeRampDuration #power per second
 
     #The then yellow at 10 min
     yellowStart = (wakeSeconds*(1/3.0))
     yellowRampDuration = wakeTime.second - yellowStart
-    yellowRamp = yellowRampDuration/100
+    yellowRamp = 255.0/yellowRampDuration
 
     #then the white at 5 min
     whiteStart = (wakeSeconds*(2/3.0))
     whiteRampDuration = wakeTime.second - whiteStart
-    whiteRamp = whiteRampDuration/100
+    whiteRamp = 255.0/whiteRampDuration
 
     #end with all LEDs at 100.
 
@@ -30,13 +30,13 @@ def wakeSequence(wakeSeconds, seconds):
     whiteBrightness = 0
 
     if orangeBrightness < 100 and seconds > orangeStart:
-        orangeBrightness = orangeRamp*seconds
+        orangeBrightness = int(orangeRamp*seconds)
 
     if yellowBrightness < 100 and seconds > yellowStart:
-        yellowBrightness = yellowRamp*seconds
+        yellowBrightness = int(yellowRamp*seconds)
 
     if whiteBrightness < 100 and seconds > whiteStart:
-        whiteBrightness = whiteRamp*seconds
+        whiteBrightness = int(whiteRamp*seconds)
 
     piglow.orange(orangeBrightness)
     piglow.yellow(yellowBrightness)
@@ -48,7 +48,7 @@ def wakeSequence(wakeSeconds, seconds):
 piglow = PiGlow()
 
 hours = 0
-minutes = 40
+minutes = 48
 
 #Takes 15 minutes to fully wake up
 wakeDuration = datetime.timedelta(minutes=15)
