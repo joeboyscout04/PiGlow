@@ -69,7 +69,9 @@ try:
 
         shutOffTime = wakeTime + totalDuration
 
-        if wakeTime < currentTime < shutOffTime:
+        weekend = wakeTime.weekday() > 5 #Monday=0, Sunday=6.
+
+        if wakeTime < currentTime < shutOffTime and (not weekend):
             seconds = currentTime - wakeTime
             print("Wake sequence at %i seconds" % seconds.seconds)
             wakeSequence(wakeDuration.seconds, seconds.seconds)
